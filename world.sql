@@ -301,3 +301,65 @@ LEFT JOIN
     employees e 
 ON 
     p.dept_id = e.dept_id;
+    
+use selfjoin;
+
+select d.dept_name,count(*)
+from employees as e
+join departments as d on e.dept_id=d.dept_id
+group by d.dept_name;
+ 
+ 
+ 
+ 
+ 
+ 
+ -- Sub Query
+ 
+ create database cwr_db;
+ use cwr_db;
+ 
+ create table employee_c(id int,name varchar(30),salary int);
+ insert into employee_c values(1,'a',100),(2,'b',250),(3,'c',400),(4,'d',300);
+ 
+ select max(salary) from employee_c;
+ 
+ select * from employee_c where salary=400;
+ 
+ 
+ 
+ select min(salary) from employee_c;
+ select * from employee_c where salary=100;
+ 
+ select * from employee_c where salary=(select min(salary) from employee_c);
+ 
+ 
+ select max(salary) from employee_c;
+ select * from employee_c where salary=400;
+ 
+ select * from employee_c where salary=(select max(salary) from employee_c);
+ 
+ 
+ 
+ 
+ insert into employee_c values(5,'aman',250);
+ 
+ 
+ 
+ 
+ select * from employee_c where salary=(select salary from employee_c where name='b');
+ 
+ 
+ 
+ 
+ use world;
+ 
+ select * from city where district = ( select name from city where Name = "Abu Dhabi");
+ 
+ select * from city where population =(select max(population)from city);
+ 
+ 
+ 
+ 
+ 
+ 
