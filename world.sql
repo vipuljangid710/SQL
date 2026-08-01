@@ -342,9 +342,16 @@ group by d.dept_name;
  
  
  
- insert into employee_c values(5,'aman',250);
+ insert into employee_c values(5,'a',300);
  
+ select * from employee_c;
+
+select * from employee_c
+where salary = any(select salary from employee_c where name='a');
  
+ select * from employee_c
+where salary > any(select salary from employee_c where name='a');
+
  
  
  select * from employee_c where salary=(select salary from employee_c where name='b');
@@ -358,6 +365,14 @@ group by d.dept_name;
  
  select * from city where population =(select max(population)from city);
  
+ create table orders(order_id int,name varchar(30),salary int);
+ insert into orders values (1,'a',100),(2,'a',200),(3,'a',300),(4,'b',400),(5,'b',300);
+ 
+--  select * from orders;-- 
+ 
+ select order_id,name,salary from 
+ orders as o where salary=(select max(salary)from orders where name =o.name )
+ and name = o.name;
  
  
  
